@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Locked Page</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: #1c1c1c;
+            padding: 25px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #6a5acd;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7b6cff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: #ff4c4c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box" id="lockPage">
+    <h2>🔒 Page Locked</h2>
+    <input type="password" id="code" placeholder="Enter unlock code">
+    <button onclick="unlock()">Unlock</button>
+    <p class="error" id="error"></p>
+</div>
+
+<div class="box hidden" id="inputPage">
+    <h2>✅ Unlocked</h2>
+    <input type="text" id="name" placeholder="Your name">
+    <input type="number" id="age" placeholder="Your age">
+    <button onclick="submitData()">Submit</button>
+    <p id="result"></p>
+</div>
+
+<script>
+    const secretCode = "1234";
+
+    function unlock() {
+        const enteredCode = document.getElementById("code").value;
+        const error = document.getElementById("error");
+
+        if (enteredCode === secretCode) {
+            document.getElementById("lockPage").classList.add("hidden");
+            document.getElementById("inputPage").classList.remove("hidden");
+        } else {
+            error.textContent = "❌ Wrong code!";
+        }
+    }
+
+    function submitData() {
+        const name = document.getElementById("name").value;
+        const age = document.getElementById("age").value;
+
+        document.getElementById("result").textContent =
+            `Welcome ${name}, you are ${age} years old.`;
+    }
+</script>
+
+</body>
+</html>
